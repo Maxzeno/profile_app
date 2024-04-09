@@ -12,10 +12,10 @@ class SignupController extends GetxController {
 
   var isLoading = false.obs;
   var isPWSuccess = false.obs;
-  var showPassword = false.obs;
+  var hidePassword = true.obs;
 
-  void setShowPassword() {
-    showPassword.value = !showPassword.value;
+  void setHidePassword() {
+    hidePassword.value = !hidePassword.value;
     update();
   }
 
@@ -57,7 +57,7 @@ class SignupController extends GetxController {
         await LoginController.instance
             .login(username: username, password: password);
         successSnackbar("Signup Successful");
-        setShowPassword();
+        hidePassword.value = true;
       } else {
         failedSnackbar(response.body);
       }

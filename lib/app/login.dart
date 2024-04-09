@@ -138,7 +138,7 @@ class _LoginState extends State<Login> {
                         controller: _userPasswordEC,
                         nameFocusNode: _userPasswordFN,
                         keyboardType: TextInputType.visiblePassword,
-                        obscureText: controller.showPassword.value,
+                        obscureText: controller.hidePassword.value,
                         textInputAction: TextInputAction.go,
                         validator: (value) {
                           if (value == null || value!.isEmpty) {
@@ -151,8 +151,8 @@ class _LoginState extends State<Login> {
                           _userPasswordEC.text = value;
                         },
                         suffixIcon: IconButton(
-                          onPressed: controller.setShowPassword,
-                          icon: controller.showPassword.value
+                          onPressed: controller.setHidePassword,
+                          icon: !controller.hidePassword.value
                               ? const Icon(
                                   Icons.visibility,
                                 )

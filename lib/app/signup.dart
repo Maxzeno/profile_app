@@ -234,7 +234,7 @@ class _SignUpState extends State<SignUp> {
                         controller: _userPasswordEC,
                         nameFocusNode: _userPasswordFN,
                         keyboardType: TextInputType.visiblePassword,
-                        obscureText: controller.showPassword.value,
+                        obscureText: controller.hidePassword.value,
                         textInputAction: TextInputAction.go,
                         validator: (value) {
                           RegExp passwordPattern = RegExp(
@@ -252,8 +252,8 @@ class _SignUpState extends State<SignUp> {
                           _userPasswordEC.text = value;
                         },
                         suffixIcon: IconButton(
-                          onPressed: controller.setShowPassword,
-                          icon: controller.showPassword.value
+                          onPressed: controller.setHidePassword,
+                          icon: !controller.hidePassword.value
                               ? const Icon(
                                   Icons.visibility,
                                 )

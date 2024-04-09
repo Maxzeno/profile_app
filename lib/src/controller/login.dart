@@ -13,10 +13,10 @@ class LoginController extends GetxController {
   static LoginController get instance => Get.find<LoginController>();
 
   var isLoading = false.obs;
-  var showPassword = false.obs;
+  var hidePassword = true.obs;
 
-  void setShowPassword() {
-    showPassword.value = !showPassword.value;
+  void setHidePassword() {
+    hidePassword.value = !hidePassword.value;
     update();
   }
 
@@ -43,7 +43,8 @@ class LoginController extends GetxController {
       if (response.statusCode == 200) {
         successSnackbar("Login Successful");
         await setToken(jsonDecode(response.body)['token']);
-        setShowPassword();
+        hidePassword.value = true;
+
         Get.off(
           () => const Profile(),
           routeName: 'Profile',
