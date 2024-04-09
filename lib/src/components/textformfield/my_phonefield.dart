@@ -53,6 +53,7 @@ class MyPhoneField extends StatelessWidget {
         fontWeight: FontWeight.w400,
       ),
       decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
         hintText: "Enter phone Number",
         errorStyle: const TextStyle(
           color: kErrorColor,

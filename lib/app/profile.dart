@@ -20,7 +20,6 @@ class _ProfileState extends State<Profile> {
   //=========================== INITIAL STATE AND DISPOSE ====================================\\
   @override
   void initState() {
-    // UserController.instance.getUser();
     super.initState();
   }
 
