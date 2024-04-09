@@ -13,7 +13,7 @@ const kHalfSizedBox = SizedBox(height: kDefaultPadding / 2);
 const kHalfWidthSizedBox = SizedBox(width: kDefaultPadding / 2);
 
 // Colors
-const Color kAccentColor = Color(0xFFEC2623);
+const Color kMainRed = Color(0xFFEC2623);
 const Color kSecondaryColor = Color(0xFF0003C4);
 const Color kPrimaryColor = Color(0xFFFFFFFF);
 const Color kTextBlackColor = Color.fromARGB(255, 0, 0, 0);

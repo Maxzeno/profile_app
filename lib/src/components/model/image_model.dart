@@ -48,7 +48,7 @@ class ImageModel extends StatelessWidget {
                       ),
                       child: const Icon(
                         Icons.camera_alt_rounded,
-                        color: kAccentColor,
+                        color: kMainRed,
                       ),
                     ),
                   ),
@@ -80,7 +80,7 @@ class ImageModel extends StatelessWidget {
                       ),
                       child: const Icon(
                         Icons.image,
-                        color: kAccentColor,
+                        color: kMainRed,
                       ),
                     ),
                   ),

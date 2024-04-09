@@ -133,7 +133,7 @@ class _LoginState extends State<Login> {
                         controller: _userPasswordEC,
                         nameFocusNode: _userPasswordFN,
                         keyboardType: TextInputType.visiblePassword,
-                        obscureText: controller.isLoading.value,
+                        obscureText: controller.showPassword.value,
                         textInputAction: TextInputAction.go,
                         validator: (value) {
                           if (value == null || value!.isEmpty) {
@@ -187,7 +187,7 @@ class _LoginState extends State<Login> {
                       onPressed: _toSignupPage,
                       child: const Text(
                         "Sign up",
-                        style: TextStyle(color: kAccentColor),
+                        style: TextStyle(color: kMainRed),
                       ),
                     ),
                   ],

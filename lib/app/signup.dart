@@ -148,7 +148,7 @@ class _SignUpState extends State<SignUp> {
                                 width: 50,
                                 padding: const EdgeInsets.all(5),
                                 decoration: ShapeDecoration(
-                                  color: kAccentColor,
+                                  color: kMainRed,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(100),
                                   ),
@@ -227,7 +227,7 @@ class _SignUpState extends State<SignUp> {
                         showDropdownIcon: true,
                         dropdownIcon: const Icon(
                           Icons.arrow_drop_down_rounded,
-                          color: kAccentColor,
+                          color: kMainRed,
                         ),
                         validator: (value) {
                           if (value == null || value.number.isEmpty) {
@@ -349,7 +349,7 @@ class _SignUpState extends State<SignUp> {
                       onPressed: _toLoginPage,
                       child: const Text(
                         "Log in",
-                        style: TextStyle(color: kAccentColor),
+                        style: TextStyle(color: kMainRed),
                       ),
                     ),
                   ],

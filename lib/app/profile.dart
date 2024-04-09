@@ -76,11 +76,12 @@ class _ProfileState extends State<Profile> {
                       height: 300,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(25),
-                        
                         child: SvgPicture.network(
                           controller.user.value.image,
                           placeholderBuilder: (BuildContext context) =>
-                              const CircularProgressIndicator(),
+                              const CircularProgressIndicator(
+                            color: kMainRed,
+                          ),
                           width: media.width - 100,
                         ),
                       ),

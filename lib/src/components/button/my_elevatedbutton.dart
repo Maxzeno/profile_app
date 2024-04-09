@@ -19,8 +19,8 @@ class MyElevatedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
       style: ElevatedButton.styleFrom(
-        disabledBackgroundColor: kAccentColor.withOpacity(0.5),
-        backgroundColor: kAccentColor,
+        disabledBackgroundColor: kMainRed.withOpacity(0.5),
+        backgroundColor: kMainRed,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
