@@ -6,7 +6,7 @@ class Loading extends StatelessWidget {
 
   const Loading({
     super.key,
-    this.color = kPrimaryColor,
+    this.color = kMainRed,
   });
 
   @override

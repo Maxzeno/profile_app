@@ -20,6 +20,7 @@ class _ProfileState extends State<Profile> {
   //=========================== INITIAL STATE AND DISPOSE ====================================\\
   @override
   void initState() {
+    UserController.instance.getUser();
     super.initState();
   }
 
@@ -56,67 +57,65 @@ class _ProfileState extends State<Profile> {
             left: kDefaultPadding,
             right: kDefaultPadding,
           ),
-          child: GetBuilder<UserController>(
-              initState: (state) => state.controller?.getUser(),
-              builder: (controller) {
-                if (controller.isLoading.value) {
-                  return const Loading();
-                }
-                return ListView(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
+          child: GetBuilder<UserController>(builder: (controller) {
+            if (controller.isLoading.value) {
+              return const Center(child: Loading());
+            }
+            return ListView(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        kSizedBox,
-                        Container(
-                          alignment: Alignment.center,
-                          height: 300,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(25),
-                            child: SvgPicture.network(
-                              controller.user.value.image,
-                              placeholderBuilder: (BuildContext context) =>
-                                  const CircularProgressIndicator(
-                                color: kMainRed,
-                              ),
-                              width: media.width - 100,
-                            ),
+                    kSizedBox,
+                    Container(
+                      alignment: Alignment.center,
+                      height: 300,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: SvgPicture.network(
+                          controller.user.value.image,
+                          placeholderBuilder: (BuildContext context) =>
+                              const CircularProgressIndicator(
+                            color: kMainRed,
                           ),
+                          width: media.width - 100,
                         ),
-                        kSizedBox,
-                        kSizedBox,
-                        kSizedBox,
-                        RowText(
-                          left: 'Username',
-                          right: controller.user.value.username,
-                        ),
-                        RowText(
-                          left: 'Email',
-                          right: controller.user.value.email,
-                        ),
-                        RowText(
-                          left: 'Phone',
-                          right: controller.user.value.phone,
-                        ),
-                        RowText(
-                          left: 'Address',
-                          right: controller.user.value.address,
-                        ),
-                        MyElevatedButton(
-                          title: "Logout",
-                          onPressed: _logout,
-                          isLoading: false,
-                        ),
-                        kSizedBox,
-                      ],
+                      ),
                     ),
                     kSizedBox,
                     kSizedBox,
+                    kSizedBox,
+                    RowText(
+                      left: 'Username',
+                      right: controller.user.value.username,
+                    ),
+                    RowText(
+                      left: 'Email',
+                      right: controller.user.value.email,
+                    ),
+                    RowText(
+                      left: 'Phone',
+                      right: controller.user.value.phone,
+                    ),
+                    RowText(
+                      left: 'Address',
+                      right: controller.user.value.address,
+                    ),
+                    MyElevatedButton(
+                      title: "Logout",
+                      onPressed: _logout,
+                      isLoading: false,
+                    ),
+                    kSizedBox,
                   ],
-                );
-              }),
+                ),
+                kSizedBox,
+                kSizedBox,
+              ],
+            );
+          }),
         ),
       ),
     );

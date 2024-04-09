@@ -12,7 +12,7 @@ import 'package:profile/src/utils/helper.dart';
 class UserController extends GetxController {
   static UserController get instance => Get.find<UserController>();
 
-  var isLoading = false.obs;
+  var isLoading = true.obs;
   var user = UserModel.fromJson(null).obs;
 
   Future getUser() async {

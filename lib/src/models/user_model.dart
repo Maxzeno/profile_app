@@ -3,7 +3,6 @@ import 'dart:convert';
 const String notAvailable = 'Not Available';
 
 class UserModel {
-  final int id;
   final String email;
   final String phone;
   final String username;
@@ -11,7 +10,6 @@ class UserModel {
   final String image;
 
   const UserModel({
-    required this.id,
     required this.email,
     required this.phone,
     required this.username,
@@ -22,7 +20,6 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic>? json) {
     json ??= {};
     return UserModel(
-      id: json['id'] ?? 0,
       email: json['email'] ?? notAvailable,
       phone: json['phone'] ?? notAvailable,
       username: json['username'] ?? notAvailable,
