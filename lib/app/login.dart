@@ -112,15 +112,9 @@ class _LoginState extends State<Login> {
                       MyTextFormField(
                         controller: _userNameEC,
                         validator: (value) {
-                          RegExp userNamePattern = RegExp(
-                            r'^.{3,}$', //Min. of 3 characters
-                          );
                           if (value == null || value!.isEmpty) {
                             userNameFN.requestFocus();
                             return "Enter your username";
-                          } else if (!userNamePattern.hasMatch(value)) {
-                            userNameFN.requestFocus();
-                            return "Name must be at least 3 characters";
                           }
                           return null;
                         },
@@ -142,14 +136,9 @@ class _LoginState extends State<Login> {
                         obscureText: controller.isLoading.value,
                         textInputAction: TextInputAction.go,
                         validator: (value) {
-                          RegExp passwordPattern = RegExp(
-                              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
                           if (value == null || value!.isEmpty) {
                             _userPasswordFN.requestFocus();
                             return "Enter your password";
-                          } else if (!passwordPattern.hasMatch(value)) {
-                            _userPasswordFN.requestFocus();
-                            return "Password needs to match format below.";
                           }
                           return null;
                         },

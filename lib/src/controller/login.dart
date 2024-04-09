@@ -16,6 +16,7 @@ class LoginController extends GetxController {
 
   void setShowPassword() {
     showPassword.value = !showPassword.value;
+    update();
   }
 
   Future login({required String username, required String password}) async {
@@ -40,8 +41,8 @@ class LoginController extends GetxController {
 
       if (response.statusCode == 200) {
         successSnackbar("Login Successful");
-
         await setToken(jsonDecode(response.body)['token']);
+        setShowPassword();
         Get.off(
           () => const Profile(),
           routeName: 'Profile',

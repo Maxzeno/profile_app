@@ -41,8 +41,6 @@ class UserController extends GetxController {
           "Authorization": "Bearer $token",
         },
       ).timeout(const Duration(seconds: 10));
-      print(response.statusCode);
-      print(response.body);
 
       if (response.statusCode == 200) {
         user.value = modelUser(response.body);
@@ -50,8 +48,6 @@ class UserController extends GetxController {
         failedSnackbar(response.body);
       }
     } catch (e) {
-      print(e);
-
       failedSnackbar("Something went wrong");
     }
     isLoading.value = false;

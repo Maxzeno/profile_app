@@ -15,10 +15,12 @@ class SignupController extends GetxController {
 
   void setShowPassword() {
     showPassword.value = !showPassword.value;
+    update();
   }
 
   void setPWSuccess(bool value) {
     isPWSuccess.value = value;
+    update();
   }
 
   Future signup(
@@ -28,6 +30,7 @@ class SignupController extends GetxController {
       required String phone,
       required String address}) async {
     isLoading.value = true;
+    update();
 
     var url = "$baseURL/register";
 
@@ -37,6 +40,7 @@ class SignupController extends GetxController {
       'email': email,
       'phone': phone,
       'address': address,
+      'image': "",
     });
 
     try {
@@ -48,10 +52,11 @@ class SignupController extends GetxController {
         },
       ).timeout(const Duration(seconds: 10));
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         await LoginController.instance
             .login(username: username, password: password);
         successSnackbar("Signup Successful");
+        setShowPassword();
       } else {
         failedSnackbar(response.body);
       }
@@ -59,5 +64,6 @@ class SignupController extends GetxController {
       failedSnackbar("Something went wrong");
     }
     isLoading.value = false;
+    update();
   }
 }
