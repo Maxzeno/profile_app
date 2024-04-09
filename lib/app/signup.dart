@@ -6,7 +6,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:profile/app/login.dart';
 import 'package:profile/src/components/button/my_elevatedbutton.dart';
 import 'package:profile/src/components/text/form_text.dart';
-import 'package:profile/src/components/textformfield/my_intl_phonefield.dart';
+import 'package:profile/src/components/textformfield/my_phonefield.dart';
 import 'package:profile/src/components/textformfield/textformfield.dart';
 import 'package:profile/src/controller/auth_controller.dart';
 import 'package:profile/src/controller/signup.dart';
@@ -173,7 +173,7 @@ class _SignUpState extends State<SignUp> {
                       kSizedBox,
                       const FormText(text: 'Phone Number'),
                       kHalfSizedBox,
-                      MyIntlPhoneField(
+                      MyPhoneField(
                         controller: _userPhoneNumberEC,
                         initialCountryCode: "NG",
                         invalidNumberMessage: "Invalid Phone Number",
@@ -185,14 +185,17 @@ class _SignUpState extends State<SignUp> {
                           color: kMainRed,
                         ),
                         validator: (value) {
-                          if (value == null || value.number.isEmpty) {
+                          if (value == null || value.isEmpty) {
                             return "Enter your phone number";
+                          }
+                          if (value.length < 5) {
+                            return "Enter a valid phone number";
                           }
                           return null;
                         },
                         onSaved: (value) {
                           if (value != null) {
-                            _userPhoneNumberEC.text = value.completeNumber;
+                            _userPhoneNumberEC.text = value;
                           }
                         },
                         textInputAction: TextInputAction.next,

@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:form_builder_phone_field/form_builder_phone_field.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
 import 'package:profile/src/utils/constants.dart';
 
-class MyIntlPhoneField extends StatelessWidget {
+class MyPhoneField extends StatelessWidget {
   final TextEditingController controller;
   final String initialCountryCode;
   final String invalidNumberMessage;
@@ -16,10 +14,10 @@ class MyIntlPhoneField extends StatelessWidget {
   final Icon dropdownIcon;
   final TextInputAction textInputAction;
   final FocusNode focusNode;
-  final void Function(PhoneNumber?)? onSaved;
-  final FutureOr<String?> Function(PhoneNumber?)? validator;
+  final void Function(String?)? onSaved;
+  final String? Function(String?)? validator;
   final void Function(Country country)? onCountryChanged;
-  const MyIntlPhoneField({
+  const MyPhoneField({
     super.key,
     required this.controller,
     required this.initialCountryCode,
@@ -37,36 +35,18 @@ class MyIntlPhoneField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntlPhoneField(
-      countries: const [
-        Country(
-          name: "Nigeria",
-          nameTranslations: {
-            "en": "Nigeria",
-          },
-          flag: "🇳🇬",
-          code: "NG",
-          dialCode: "234",
-          minLength: 10,
-          maxLength: 10,
-        ),
-      ],
+    return FormBuilderPhoneField(
+      name: 'phone_number',
+      defaultSelectedCountryIsoCode: "NG",
+      priorityListByIsoCode: const ['NG'],
       controller: controller,
-      initialCountryCode: initialCountryCode,
-      invalidNumberMessage: invalidNumberMessage,
-      dropdownIconPosition: dropdownIconPosition,
-      showCountryFlag: showCountryFlag,
       keyboardType: TextInputType.number,
-      showDropdownIcon: showDropdownIcon,
-      dropdownIcon: dropdownIcon,
       textInputAction: textInputAction,
       focusNode: focusNode,
       validator: validator,
       onSaved: onSaved,
-      flagsButtonPadding: const EdgeInsets.all(kDefaultPadding / 2),
       cursorColor: kSecondaryColor,
       onChanged: (phone) {},
-      onCountryChanged: onCountryChanged,
       style: const TextStyle(
         color: kSecondaryColor,
         fontSize: 20,

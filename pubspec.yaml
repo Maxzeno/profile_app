@@ -19,6 +19,7 @@ dependencies:
   shared_preferences: ^2.2.2
   get: ^4.6.6
   flutter_svg: ^2.0.10+1
+  form_builder_phone_field: ^2.0.1
 
   cupertino_icons: ^1.0.6
 
@@ -30,9 +31,9 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter_native_splash:
-  image: assets/icon/icon.png
+  image: assets/icon/profile.png
   color: "#f9f9f9"
-  image_dark: assets/icon/icon.png
+  image_dark: assets/icon/profile.png
   color_dark: "#000000"
 
 flutter_launcher_icons:
