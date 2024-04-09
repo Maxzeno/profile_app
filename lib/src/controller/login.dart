@@ -20,25 +20,28 @@ class LoginController extends GetxController {
 
   Future login({required String username, required String password}) async {
     isLoading.value = true;
+    update();
 
     var url = "$baseURL/login";
 
-    final body = {
+    final body = jsonEncode({
       'username': username,
       'password': password,
-    };
+    });
 
     try {
       http.Response response = await http.post(
         Uri.parse(url),
         body: body,
         headers: {
-          "Content-Type": 'application/json',
+          'Content-Type': 'application/json',
         },
       ).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
-        await setToken(jsonDecode(response.body));
+        successSnackbar("Login Successful");
+
+        await setToken(jsonDecode(response.body)['token']);
         Get.off(
           () => const Profile(),
           routeName: 'Profile',
@@ -49,11 +52,12 @@ class LoginController extends GetxController {
           transition: Transition.rightToLeft,
         );
       } else {
-        failedSnackbar(jsonDecode(response.body));
+        failedSnackbar(response.body);
       }
     } catch (e) {
       failedSnackbar("Something went wrong");
     }
     isLoading.value = false;
+    update();
   }
 }

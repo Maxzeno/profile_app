@@ -15,11 +15,13 @@ class AuthController extends GetxController {
 
   Future checkAuth() async {
     isLoading.value = true;
+    update();
 
     var url = "$baseURL/profile";
     String? token = getToken();
     if (token == null) {
       isLoading.value = false;
+      update();
       return;
     }
 
@@ -47,5 +49,6 @@ class AuthController extends GetxController {
       failedSnackbar("Something went wrong");
     }
     isLoading.value = false;
+    update();
   }
 }

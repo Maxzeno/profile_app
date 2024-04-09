@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Base url
-const String baseURL = "http://stacked.com.ng/api";
+const String baseURL = "https://stacked.com.ng/api";
 
 // Spacing
 const double kDefaultPadding = 20.0;

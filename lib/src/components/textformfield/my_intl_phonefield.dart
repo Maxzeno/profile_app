@@ -16,7 +16,7 @@ class MyIntlPhoneField extends StatelessWidget {
   final Icon dropdownIcon;
   final TextInputAction textInputAction;
   final FocusNode focusNode;
-  final dynamic onSaved;
+  final void Function(PhoneNumber?)? onSaved;
   final FutureOr<String?> Function(PhoneNumber?)? validator;
   final void Function(Country country)? onCountryChanged;
   const MyIntlPhoneField({

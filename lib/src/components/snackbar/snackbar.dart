@@ -32,5 +32,5 @@ void successSnackbar(String msg, [String title = 'Success']) {
 }
 
 void failedSnackbar(String msg, [String title = 'Failed']) {
-  SnackBarController.showSnackBar(title, msg, kRedColor);
+  SnackBarController.showSnackBar(title, msg, kAccentColor);
 }

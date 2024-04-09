@@ -12,6 +12,7 @@ import 'package:profile/src/components/textformfield/textformfield.dart';
 import 'package:profile/src/controller/auth_controller.dart';
 import 'package:profile/src/controller/signup.dart';
 import 'package:profile/src/utils/constants.dart';
+import 'package:profile/src/utils/helper.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -24,13 +25,12 @@ class _SignUpState extends State<SignUp> {
   //=========================== INITIAL STATE AND DISPOSE ====================================\\
   @override
   void initState() {
+    setFirstTime();
     AuthController.instance.checkAuth();
     super.initState();
   }
 
   //=========================== ALL VARIABBLES ====================================\\
-  String countryDialCode = '234';
-  bool isPWSuccess = true;
 
   //=========================== CONTROLLER ====================================\\
   final TextEditingController _userNameEC = TextEditingController();
@@ -225,9 +225,6 @@ class _SignUpState extends State<SignUp> {
                         dropdownIconPosition: IconPosition.trailing,
                         showCountryFlag: true,
                         showDropdownIcon: true,
-                        onCountryChanged: (country) {
-                          countryDialCode = country.dialCode;
-                        },
                         dropdownIcon: const Icon(
                           Icons.arrow_drop_down_rounded,
                           color: kAccentColor,
@@ -239,7 +236,9 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         onSaved: (value) {
-                          _userPhoneNumberEC.text = value!;
+                          if (value != null) {
+                            _userPhoneNumberEC.text = value.completeNumber;
+                          }
                         },
                         textInputAction: TextInputAction.next,
                         focusNode: _userPhoneNumberFN,
@@ -318,16 +317,8 @@ class _SignUpState extends State<SignUp> {
                   width: 400,
                   height: 150,
                   minLength: 8,
-                  onSuccess: () {
-                    setState(() {
-                      isPWSuccess = true;
-                    });
-                  },
-                  onFail: () {
-                    setState(() {
-                      isPWSuccess = false;
-                    });
-                  },
+                  onSuccess: () => controller.setPWSuccess(true),
+                  onFail: () => controller.setPWSuccess(false),
                 ),
                 kSizedBox,
                 MyElevatedButton(

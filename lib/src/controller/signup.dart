@@ -10,10 +10,15 @@ class SignupController extends GetxController {
   static SignupController get instance => Get.find<SignupController>();
 
   var isLoading = false.obs;
+  var isPWSuccess = false.obs;
   var showPassword = false.obs;
 
   void setShowPassword() {
     showPassword.value = !showPassword.value;
+  }
+
+  void setPWSuccess(bool value) {
+    isPWSuccess.value = value;
   }
 
   Future signup(
@@ -26,13 +31,13 @@ class SignupController extends GetxController {
 
     var url = "$baseURL/register";
 
-    final body = {
+    final body = jsonEncode({
       'username': username,
       'password': password,
       'email': email,
       'phone': phone,
       'address': address,
-    };
+    });
 
     try {
       http.Response response = await http.post(
@@ -44,11 +49,11 @@ class SignupController extends GetxController {
       ).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
-        successSnackbar("Signup Successfull");
         await LoginController.instance
             .login(username: username, password: password);
+        successSnackbar("Signup Successful");
       } else {
-        failedSnackbar(jsonDecode(response.body));
+        failedSnackbar(response.body);
       }
     } catch (e) {
       failedSnackbar("Something went wrong");
