@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:get/get.dart';
@@ -61,7 +62,11 @@ class SignupController extends GetxController {
         failedSnackbar(response.body);
       }
     } catch (e) {
-      failedSnackbar("Something went wrong");
+      if (e is TimeoutException) {
+        failedSnackbar("Please check your internet");
+      } else {
+        failedSnackbar("Something went wrong");
+      }
     }
     isLoading.value = false;
     update();
