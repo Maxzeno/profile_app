@@ -46,6 +46,8 @@ class UserController extends GetxController {
 
       if (response.statusCode == 200) {
         user.value = modelUser(response.body);
+      } else if (response.statusCode.toString().startsWith('5')) {
+        failedSnackbar("Something went wrong");
       } else {
         failedSnackbar(response.body);
       }

@@ -249,7 +249,9 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         onSaved: (value) {
-                          _userPasswordEC.text = value;
+                          print('${_userPasswordEC.text} _userPasswordEC.text');
+                          print('$value value');
+                          // _userPasswordEC.text = value;
                         },
                         suffixIcon: IconButton(
                           onPressed: controller.setHidePassword,
@@ -287,7 +289,7 @@ class _SignUpState extends State<SignUp> {
                           username: _userNameEC.text,
                           password: _userPasswordEC.text,
                           email: _userEmailEC.text,
-                          phone: _userPhoneNumberEC.text,
+                          phone: "+234${_userPhoneNumberEC.text}",
                           address: _userAddressEC.text);
                     }
                   },

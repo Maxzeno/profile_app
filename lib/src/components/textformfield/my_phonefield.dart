@@ -39,6 +39,7 @@ class MyPhoneField extends StatelessWidget {
       name: 'phone_number',
       defaultSelectedCountryIsoCode: "NG",
       priorityListByIsoCode: const ['NG'],
+      countryFilterByIsoCode: const ['NG'],
       controller: controller,
       keyboardType: TextInputType.number,
       textInputAction: textInputAction,
