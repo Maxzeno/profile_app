@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:profile/app/login.dart';
 import 'package:profile/src/components/button/my_elevatedbutton.dart';
-import 'package:profile/src/components/model/image_model.dart';
 import 'package:profile/src/components/text/form_text.dart';
 import 'package:profile/src/components/textformfield/my_intl_phonefield.dart';
 import 'package:profile/src/components/textformfield/textformfield.dart';
@@ -73,98 +72,54 @@ class _SignUpState extends State<SignUp> {
           height: media.height,
           width: media.width,
           padding: const EdgeInsets.only(
-            top: kDefaultPadding / 2,
             left: kDefaultPadding,
             right: kDefaultPadding,
-            bottom: kDefaultPadding,
           ),
           child: GetBuilder<SignupController>(builder: (controller) {
             return ListView(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
               children: [
+                Container(
+                  margin: const EdgeInsets.only(top: kDefaultPadding * 2),
+                  alignment: Alignment.center,
+                  height: 200,
+                  child: const CircleAvatar(
+                    radius: 200 / 2,
+                    child: Center(
+                      child: FaIcon(
+                        FontAwesomeIcons.lock,
+                        color: kSecondaryColor,
+                        size: 80,
+                        semanticLabel: "lock_icon",
+                      ),
+                    ),
+                  ),
+                ),
+                kSizedBox,
+                const Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Sign up',
+                        style: TextStyle(
+                            fontSize: 40, fontWeight: FontWeight.w700),
+                      ),
+                      kSizedBox,
+                      Text(
+                        'Please sign up to get started',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+                kSizedBox,
                 Form(
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      kSizedBox,
-                      const Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              'Sign up',
-                              style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.w700),
-                            ),
-                            kSizedBox,
-                            Text(
-                              'Please sign up to get started',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500),
-                            ),
-                            kSizedBox,
-                          ],
-                        ),
-                      ),
-                      kSizedBox,
-                      Stack(
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 250,
-                            child: CircleAvatar(
-                              radius: 250 / 2,
-                              child: Image.asset('assets/avatar/profile.png'),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 100,
-                            child: InkWell(
-                              onTap: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  elevation: 20,
-                                  barrierColor: kBlackColor.withOpacity(0.8),
-                                  showDragHandle: true,
-                                  useSafeArea: true,
-                                  isDismissible: true,
-                                  isScrollControlled: true,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(
-                                        kDefaultPadding,
-                                      ),
-                                    ),
-                                  ),
-                                  enableDrag: true,
-                                  builder: (builder) => const ImageModel(),
-                                );
-                              },
-                              borderRadius: BorderRadius.circular(100),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                padding: const EdgeInsets.all(5),
-                                decoration: ShapeDecoration(
-                                  color: kMainRed,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100),
-                                  ),
-                                ),
-                                child: const Center(
-                                  child: FaIcon(
-                                    FontAwesomeIcons.pencil,
-                                    color: kPrimaryColor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      kSizedBox,
                       kSizedBox,
                       const FormText(text: 'Username'),
                       kHalfSizedBox,

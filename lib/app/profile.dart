@@ -54,10 +54,8 @@ class _ProfileState extends State<Profile> {
           height: media.height,
           width: media.width,
           padding: const EdgeInsets.only(
-            top: kDefaultPadding / 2,
             left: kDefaultPadding,
             right: kDefaultPadding,
-            bottom: kDefaultPadding,
           ),
           child: GetBuilder<UserController>(builder: (controller) {
             if (controller.isLoading.value) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/route_manager.dart';
 import 'package:profile/app/signup.dart';
@@ -62,50 +63,54 @@ class _LoginState extends State<Login> {
           height: media.height,
           width: media.width,
           padding: const EdgeInsets.only(
-            top: kDefaultPadding / 2,
             left: kDefaultPadding,
             right: kDefaultPadding,
-            bottom: kDefaultPadding,
           ),
           child: GetBuilder<LoginController>(builder: (controller) {
             return ListView(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
               children: [
+                Container(
+                  margin: const EdgeInsets.only(top: kDefaultPadding * 2),
+                  alignment: Alignment.center,
+                  height: 200,
+                  child: const CircleAvatar(
+                    radius: 200 / 2,
+                    child: Center(
+                      child: FaIcon(
+                        FontAwesomeIcons.unlockKeyhole,
+                        color: kSecondaryColor,
+                        size: 80,
+                        semanticLabel: "login__success_icon",
+                      ),
+                    ),
+                  ),
+                ),
+                kSizedBox,
+                const Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Sign In',
+                        style: TextStyle(
+                            fontSize: 40, fontWeight: FontWeight.w700),
+                      ),
+                      kSizedBox,
+                      Text(
+                        'Please log in to your account',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+                kSizedBox,
                 Form(
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      kSizedBox,
-                      const Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              'Sign In',
-                              style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.w700),
-                            ),
-                            kSizedBox,
-                            Text(
-                              'Please log in to your account',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500),
-                            ),
-                            kSizedBox,
-                          ],
-                        ),
-                      ),
-                      kSizedBox,
-                      Container(
-                        alignment: Alignment.center,
-                        height: 250,
-                        child: CircleAvatar(
-                          radius: 250 / 2,
-                          child: Image.asset('assets/avatar/profile.png'),
-                        ),
-                      ),
-                      kSizedBox,
                       kSizedBox,
                       const FormText(text: 'Username'),
                       kHalfSizedBox,
