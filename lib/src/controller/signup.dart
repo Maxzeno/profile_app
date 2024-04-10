@@ -36,9 +36,9 @@ class SignupController extends GetxController {
     var url = "$baseURL/register";
 
     final body = jsonEncode({
-      'username': username,
-      'password': password,
-      'email': email,
+      'username': username.trim(),
+      'password': password.trim(),
+      'email': email.trim(),
       'phone': phone,
       'address': address,
       'image': "",

@@ -44,7 +44,7 @@ class UserController extends GetxController {
         },
       ).timeout(const Duration(seconds: 10));
 
-      if (response.statusCode == 2001) {
+      if (response.statusCode == 200) {
         user.value = modelUser(response.body);
       } else if (response.statusCode == 401) {
         failedSnackbar(response.body);

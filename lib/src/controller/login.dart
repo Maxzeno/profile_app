@@ -27,8 +27,8 @@ class LoginController extends GetxController {
     var url = "$baseURL/login";
 
     final body = jsonEncode({
-      'username': username,
-      'password': password,
+      'username': username.trim(),
+      'password': password.trim(),
     });
 
     try {
