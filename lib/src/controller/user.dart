@@ -44,10 +44,20 @@ class UserController extends GetxController {
         },
       ).timeout(const Duration(seconds: 10));
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 2001) {
         user.value = modelUser(response.body);
-      } else if (response.statusCode.toString().startsWith('5')) {
-        failedSnackbar("Something went wrong");
+      } else if (response.statusCode == 401) {
+        failedSnackbar(response.body);
+        removeToken();
+        Get.off(
+          () => const Login(),
+          routeName: 'Login',
+          duration: const Duration(milliseconds: 300),
+          fullscreenDialog: true,
+          curve: Curves.easeIn,
+          popGesture: true,
+          transition: Transition.rightToLeft,
+        );
       } else {
         failedSnackbar(response.body);
       }
