@@ -29,6 +29,20 @@ class _SignUpState extends State<SignUp> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    _userNameEC.dispose();
+    _userEmailEC.dispose();
+    _userPhoneNumberEC.dispose();
+    _userAddressEC.dispose();
+    _userPasswordEC.dispose();
+    _userNameFN.dispose();
+    _userAddressFN.dispose();
+    _userPhoneNumberFN.dispose();
+    _userEmailFN.dispose();
+    _userPasswordFN.dispose();
+    super.dispose();
+  }
   //=========================== ALL VARIABBLES ====================================\\
 
   //=========================== CONTROLLER ====================================\\
@@ -42,8 +56,8 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
 
   //=========================== FOCUS NODES ====================================\\
-  final FocusNode userNameFN = FocusNode();
-  final FocusNode userAddressFN = FocusNode();
+  final FocusNode _userNameFN = FocusNode();
+  final FocusNode _userAddressFN = FocusNode();
   final FocusNode _userPhoneNumberFN = FocusNode();
   final FocusNode _userEmailFN = FocusNode();
   final FocusNode _userPasswordFN = FocusNode();
@@ -130,10 +144,10 @@ class _SignUpState extends State<SignUp> {
                             r'^.{3,}$', //Min. of 3 characters
                           );
                           if (value == null || value!.isEmpty) {
-                            userNameFN.requestFocus();
+                            _userNameFN.requestFocus();
                             return "Enter your username";
                           } else if (!userNamePattern.hasMatch(value)) {
-                            userNameFN.requestFocus();
+                            _userNameFN.requestFocus();
                             return "Name must be at least 3 characters";
                           }
                           return null;
@@ -142,7 +156,7 @@ class _SignUpState extends State<SignUp> {
                           _userNameEC.text = value;
                         },
                         textInputAction: TextInputAction.next,
-                        nameFocusNode: userNameFN,
+                        nameFocusNode: _userNameFN,
                         hintText: "Enter username",
                       ),
                       kSizedBox,
@@ -211,10 +225,10 @@ class _SignUpState extends State<SignUp> {
                             r'^.{3,}$', //Min. of 3 characters
                           );
                           if (value == null || value!.isEmpty) {
-                            userAddressFN.requestFocus();
+                            _userAddressFN.requestFocus();
                             return "Enter your address";
                           } else if (!addressPattern.hasMatch(value)) {
-                            userAddressFN.requestFocus();
+                            _userAddressFN.requestFocus();
                             return "Address must be at least 3 characters";
                           }
                           return null;
@@ -223,7 +237,7 @@ class _SignUpState extends State<SignUp> {
                           _userAddressEC.text = value;
                         },
                         textInputAction: TextInputAction.next,
-                        nameFocusNode: userAddressFN,
+                        nameFocusNode: _userAddressFN,
                         hintText: "Enter address",
                       ),
                       kSizedBox,
@@ -249,9 +263,7 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         onSaved: (value) {
-                          print('${_userPasswordEC.text} _userPasswordEC.text');
-                          print('$value value');
-                          // _userPasswordEC.text = value;
+                          _userPasswordEC.text = value;
                         },
                         suffixIcon: IconButton(
                           onPressed: controller.setHidePassword,

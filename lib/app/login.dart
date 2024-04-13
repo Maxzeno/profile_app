@@ -25,6 +25,14 @@ class _LoginState extends State<Login> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    _userNameEC.dispose();
+    _userPasswordEC.dispose();
+    _userNameFN.dispose();
+    _userPasswordFN.dispose();
+    super.dispose();
+  }
   //=========================== ALL VARIABBLES ====================================\\
 
   //=========================== CONTROLLER ====================================\\
@@ -35,7 +43,7 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
 
   //=========================== FOCUS NODES ====================================\\
-  final FocusNode userNameFN = FocusNode();
+  final FocusNode _userNameFN = FocusNode();
   final FocusNode _userPasswordFN = FocusNode();
 
   //=========================== FUNCTIONS ====================================\\
@@ -118,7 +126,7 @@ class _LoginState extends State<Login> {
                         controller: _userNameEC,
                         validator: (value) {
                           if (value == null || value!.isEmpty) {
-                            userNameFN.requestFocus();
+                            _userNameFN.requestFocus();
                             return "Enter your username";
                           }
                           return null;
@@ -127,7 +135,7 @@ class _LoginState extends State<Login> {
                           _userNameEC.text = value;
                         },
                         textInputAction: TextInputAction.next,
-                        nameFocusNode: userNameFN,
+                        nameFocusNode: _userNameFN,
                         hintText: "Enter username",
                       ),
                       kSizedBox,
